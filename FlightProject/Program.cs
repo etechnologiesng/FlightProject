@@ -17,6 +17,7 @@ namespace FlightProject
             .BuildServiceProvider();
             var solution = serviceProvider.GetService<IInventoryMangementService>();
             solution.PrintFlightSchedule();
+            Console.WriteLine("================================================");
             solution.GenerateFlightItineraries();
             Console.ReadKey();
 
