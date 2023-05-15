@@ -9,6 +9,7 @@ namespace FlightProject.Implementations
 {
     public class InventoryMangementService: IInventoryMangementService
     {
+        public const int MAX_LOAD_CAPACITY = 20;
         public readonly IOrderService _orderService;
         public readonly IScheduleService _scheduleService;
         public InventoryMangementService(IOrderService orderService, IScheduleService scheduleService)
@@ -24,7 +25,7 @@ namespace FlightProject.Implementations
 
             foreach (var flight in scheduledFlights.Flights)
             {
-                var ordersToBeLoaded = allOrders.Where(x => x.IsNotLoaded() && x.Destination == flight.Destination).OrderBy(x => x.Priority).Take(20).ToList();
+                var ordersToBeLoaded = allOrders.Where(x => x.IsNotLoaded() && x.Destination == flight.Destination).OrderBy(x => x.Priority).Take(MAX_LOAD_CAPACITY).ToList();
 
                 foreach (var order in ordersToBeLoaded)
                 {
